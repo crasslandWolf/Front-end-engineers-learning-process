@@ -1,3 +1,2 @@
 # Front-end-engineers-learning-process
-记录我的前端学习之路
-# 首先弄明白nodeJS
+从一个切图仔成长为一个前端工程师的心酸历程
