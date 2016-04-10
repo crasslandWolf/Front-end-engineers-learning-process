@@ -43,5 +43,13 @@
     git remote add origin git@github.com:your_name/origin.git
     git push -u origin master
   ```
+  ps: 如果仅仅是提交一个文件可以这样写:
+    ```
+      git add README.txt
+    ```
+      如果更新一个目录可以这样写:
+      ```
+        git add src/
+      ```
 
 
