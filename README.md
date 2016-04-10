@@ -9,11 +9,10 @@
   ```
   ssh key: ssh-keygen -t rsa -C "your_email@your_email.com"
   ```
-  ,邮箱为gitghub上自己的邮箱, 之后需要要求确认路径和输入密码, 可以使用默认一直回车。成功之后会在~/下生成.ssh文件夹, 打开id_rsa.pub, 复制里面的key, 回到github, 进入settings, 选择新建一个SSH key。在git Bash 下输入命令
+  邮箱为gitghub上自己的邮箱, 之后需要要求确认路径和输入密码, 可以使用默认一直回车。成功之后会在~/下生成.ssh文件夹, 打开id_rsa.pub, 复制里面的key, 回到github, 进入settings, 选择新建一个SSH key。在git Bash 下输入命令验证是否成功.
   ```
     ssh -T git@github.com 
   ```
-  验证是否成功.<br>
   如果是第一次会提示是否continue, 输入yes就会看到: 
   ```
     You've successfully authenticated, but GitHub does not provide shell access
@@ -36,4 +35,13 @@
     git commit -m 'update'
     git push
   ```
+  以上如果报错可以按照以下命令执行:
+  ```
+    git init
+    git add .
+    git commit -m "修改的相关信息"
+    git remote add origin git@github.com:your_name/origin.git
+    git push -u origin master
+  ```
+
 
