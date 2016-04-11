@@ -5,10 +5,10 @@
 ##### 一、建立仓库
   New repository
 ##### 二、安装客户端和配置git
-  首先在本地打开 git Bash 键入命令<br>
+  首先在本地打开 git Bash 键入命令创建 ssh key :<br>
 
   ```
-  ssh key: ssh-keygen -t rsa -C "your_email@your_email.com"
+  ssh-keygen -t rsa -C "your_email@your_email.com"
   ```
   邮箱为gitghub上自己的邮箱, 之后需要要求确认路径和输入密码, 可以使用默认一直回车。成功之后会在~/下生成.ssh文件夹, 打开id_rsa.pub, 复制里面的key, 回到github, 进入settings, 选择新建一个SSH key。在git Bash 下输入命令验证是否成功.<br>
 
@@ -37,7 +37,7 @@
 
   看到下面图片的效果说明clone成功:
 
-  ![image](https://github.com/crasslandWolf/Front-end-engineers-learning-process/img/learn-github.png)
+ ![print](./img/learn-github.png)
 ##### 四、提交
   修改完后先要add修改的文件(. 表示全部),然后填写commit, 最后再 push 到 github<br>
 
