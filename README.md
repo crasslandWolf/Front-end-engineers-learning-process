@@ -57,7 +57,7 @@
   git push -u origin master
   ```
 
-  ps: 如果仅仅是提交一个文件可以这样写:<br>
+  如果仅仅是提交一个文件可以这样写:<br>
 
   ```
   git add README.txt
