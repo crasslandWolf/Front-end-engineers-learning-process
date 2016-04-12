@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>learn ES6</title>
+</head>
+<body>
+	
+	<script src="js/traceur.js"></script>
+	<!--<script src="js/bootstrap.js"></script>-->
+	<script>
+
+		/**
+		 * let 应用
+		 */
+		var arr = [];
+		for(let i = 0; i < 10; i ++) {
+			arr[i] = function () {
+				document.write(i);
+			};
+		}
+		arr[6]();
+	</script>
+</body>
+</html>
