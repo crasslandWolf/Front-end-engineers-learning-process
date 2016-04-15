@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>learn vue</title>
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/bootstrap-2.0.2-min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+<body>
+	
+	<div class="container" id="app">
+		<h1>学习vue.js</h1>
+		<h3>Author: jinzk</h3>
+		<h3>date: 2016/04/14 09:30</h3>
+		<h3>from: <a href="http://cn.vuejs.org/">http://cn.vuejs.org/</a></h3>
+		<div class="group">
+			<h2>数组扩展方法</h2>
+			<h3>一、 array.$set(index, value)</h3>
+			<p>用法: 通过索引设置数组元素并且出发师徒更新</p>
+			<p>初始数组为: [{{setArray}}]</p>
+			<p>index: <input type="number" v-model="setArrayData.index"></p>
+			<p>value: <input type="text" v-model="setArrayData.value"></p>
+			<button class="btn btn-primary" @click="setArrayFn(setArrayData.index, setArrayData.value)">点击调用 <span class="code">$set</span> 方法</button><br><br>
+ 			<h3>二、array.$remove(reference)</h3>
+ 			<p>用法: 通过索引删除数组元素并出发视图, 这个方法现在数组中寻找这个元素, 如果找到了就调用 <span
+ 				 class="code">array.splice(index, number)</span></p>
+ 			<p>初始数组为: [{{removeArray}}]</p>
+ 			<p>value: <input type="number" v-model="removeArrayData.value"></p>
+ 			<button class="btn btn-primary" @click="removeArrayFn(removeArrayData.value)">点击调用 <span class="code">$remove</span>方法</button>
+		</div>
+		<div class="group">
+			<h2>表单控件绑定、列表渲染</h2>
+
+			<h3>一、text</h3>
+			<p>用法: 双向绑定</p>
+			<p>value: <input type="text" v-model="textValue"></p>			
+			<p>value: {{textValue}}</p><br>
+
+			<h3>二、checkbox</h3>
+			<p>用法: 多个勾选框, 绑定到同一个数组</p>
+			<label>one <input type="checkbox" value="oneId" v-model="checkboxArray"></label>
+			<label>two <input type="checkbox" value="twoId" v-model="checkboxArray" checked="true"></label>
+			<label>three <input type="checkbox" value="threeId" v-model="checkboxArray"></label>
+			<p>checkboxArray: [{{checkboxArray}}]</p><br>
+
+			<h3>三、radio</h3>
+			<p>用法: 两个单选按钮, 绑定到同一个数组</p>
+			<label>one <input type="radio" value="one" v-model="radioArray" checked="true"></label>
+			<label>two <input type="radio" value="two" v-model="radioArray"></label>
+			<p>radioArray: [{{radioArray}}]</p><br>
+
+			<h3>四、select</h3>
+			<p>1、用法: 单选</p>
+			<select v-model="selectedData">
+				<option selected>请选择</option>
+				<option v-for="selectArrayData in selectArrayDatas" value="{{selectArrayData.id}}">{{selectArrayData.value}}</option>
+			</select>
+			<p>select-model---ID: {{selectedData}}</p>
+			<br>
+			<h3>五、table</h3>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>ID</th>
+						<th>value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="selectArrayData in selectArrayDatas">
+						<td>{{$index + 1}}</td>
+						<td>{{selectArrayData.id}}</td>
+						<td>{{selectArrayData.value}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<h3>六、ul li</h3>
+			<ul class="ul">
+				<li v-for="selectArrayData in selectArrayDatas">{{selectArrayData.value}}</li>
+			</ul>
+			<br>
+			<h3>七、template v-for</h3>
+			<ul class="ul">
+				<template v-for="selectArrayData in selectArrayDatas">
+					<li>{{selectArrayData.id}}</li>
+					<li>{{selectArrayData.value}}</li>
+				</template>
+			</ul>
+		</div>
+		<div class="group">
+			<h2>数组变动检测</h2>
+			<h3>变异方法</h3>
+			<ul class="ul">
+				<li>push()</li>
+				<li>pop()</li>
+				<li>shift()</li>
+				<li>unshift()</li>
+				<li>replace()</li>
+				<li>sort()</li>
+				<li>reverse()</li>
+			</ul>
+			<p>setArray: {{setArray}}</p>
+			<button class="btn btn-primary" @click="reverseArr()">点击反转数组</button>
+			<br><br>
+			<h3>替换数组</h3>
+			<ul class="ul">
+				<li>filter()---过滤器</li>
+				<li>concat()---合并</li>
+				<li>slice()---返回选的的元素</li>
+			</ul>
+			<h4>filter() 实例</h4>
+			<p>使用正则过滤</p>
+			<p>{{filterArray}}</p>
+			<button class="btn btn-primary" @click="fliterFn()">点击过滤</button>
+		</div>
+		<div class="group">
+			<h2>问题</h2>
+			<p>由于 <span class="code">JavaScript</span> 的限制, <span class="code">Vue.js</span>不能检测到下面数组的变化</p>
+			<ol>
+				<li>直接用索引设置元素, 如 <span class="code">vm.items[0] = {}</span></li>
+				<li>修改数组的长度, 如 <span class="code">vm.items.length = 0</span></li>
+			</ol>
+			<p>解决办法:</p>
+			<p>第一个问题, <span class="code">Vue.js</span>添加了一个 <span class="code">$set()</span>方法:</p>
+			<p><span class="code">vm.array.$set(index, value)</span></p>
+			<p>ps: 开头已经介绍过</p>
+			<p>第二个问题, 直接用一个空的数组替换就ok</p>
+		</div>
+		<br><br>
+		<div class="group">
+			<h2>v-for 遍历对象</h2>
+			<ul class="ul">
+				<li v-for="(key, value) in vForObjData">
+					{{key}}: {{value}}
+				</li>
+			</ul>
+		</div>
+		<br><br>
+		<div class="group">
+			<h2>显示过滤或排序后的数组, 同时不修改或重置原始数组</h2>
+			<p> 可以使用内置的<span class="code">filterBy</span>和<span class="code">orderBy</span></p>
+			<ul class="ul">
+				<li v-for="(key, value) in vForObjData | filterBy 'jinzk'">
+					{{key}}: {{value}}
+				</li>
+			</ul>
+			<p>orderBy : <span v-for="item in orderByData | orderBy 'item' -1">{{item}}, </span></p>
+		</div>
+
+	</div>
+
+	<script src="vendor/vue/vue.min.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>

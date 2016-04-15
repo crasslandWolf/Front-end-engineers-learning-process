@@ -1,0 +1,14 @@
+.group {
+	padding: 10px 15px;
+	background-color: #eee;
+	margin: 20px;
+}
+.code {
+	color: #e96900;
+}
+input[type="checkbox"], input[type="radio"] {
+	display: inline;
+}
+.ul li {
+	height: 28px;
+}
